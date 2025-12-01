@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Interativos</title>
+    <style>
+        /* CSS - Estilos Aconchegantes com Verde Claro e Branco */
+        :root {
+            --verde-principal: #a8e6cf;
+            --verde-secundario: #dcedc1;
+            --branco: #ffffff;
+            --destaque: #ffaaa5;
+            --texto: #2a363b;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--verde-principal);
+            color: var(--texto);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: var(--texto);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .flashcard {
+            background-color: var(--branco);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .flashcard:hover {
+            transform: translateY(-5px);
+        }
+        
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .flashcard-front {
+            background-color: var(--branco);
+            color: var(--texto);
+            border: 3px solid var(--verde-principal);
+        }
+        
+        .flashcard-back {
+            background-color: var(--verde-secundario);
+            color: var(--texto);
+            transform: rotateY(180deg);
+            border: 3px solid var(--branco);
+        }
+        
+        .flashcard h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .flashcard p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        button {
+            background-color: var(--destaque);
+            color: var(--branco);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            background-color: var(--branco);
+            color: var(--destaque);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .add-flashcard {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--branco);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .add-flashcard h2 {
+            margin-top: 0;
+            color: var(--texto);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--verde-principal);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            color: var(--texto);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Flashcards Interativos</h1>
+        <p>Clique em um card para virar e ver a resposta</p>
+    </header>
+    
+    <div class="container">
+        <!-- Flashcard 1 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <h2>O que é HTML?</h2>
+                </div>
+                <div class="flashcard-back">
+                    <p>HTML (HyperText Markup Language) é a linguagem de marcação padrão para criar páginas web.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Flashcard 2 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <h2>O que é CSS?</h2>
+                </div>
+                <div class="flashcard-back">
+                    <p>CSS (Cascading Style Sheets) é uma linguagem de estilo usada para descrever a apresentação de um documento HTML.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Flashcard 3 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <h2>Qual a diferença entre margin e padding?</h2>
+                </div>
+                <div class="flashcard-back">
+                    <p>Margin é o espaço fora de um elemento, enquanto padding é o espaço dentro do elemento, entre seu conteúdo e sua borda.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Flashcard 4 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <h2>O que é JavaScript?</h2>
+                </div>
+                <div class="flashcard-back">
+                    <p>JavaScript é uma linguagem de programação que permite implementar funcionalidades complexas em páginas web.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button onclick="shuffleCards()">Embaralhar Cards</button>
+        <button onclick="resetCards()">Resetar Cards</button>
+    </div>
+    
+    <div class="add-flashcard">
+        <h2>Adicionar Novo Flashcard</h2>
+        <div class="form-group">
+            <label for="pergunta">Pergunta:</label>
+            <input type="text" id="pergunta" placeholder="Digite a pergunta...">
+        </div>
+        <div class="form-group">
+            <label for="resposta">Resposta:</label>
+            <textarea id="resposta" placeholder="Digite a resposta..."></textarea>
+        </div>
+        <button onclick="addFlashcard()">Adicionar Flashcard</button>
+    </div>
+    
+    <footer>
+        <p>© 2025 Flashcards | Desenvolvido por Gabriel B.</p>
+    </footer>
+    
+    <script>
+        function shuffleCards() {
+            const container = document.querySelector('.container');
+            const cards = Array.from(document.querySelectorAll('.flashcard'));
+            
+            // Embaralha os cards
+            cards.sort(() => Math.random() - 0.5);
+            
+            // Remove todos os cards do container
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            
+            // Adiciona os cards embaralhados de volta
+            cards.forEach(card => {
+                container.appendChild(card);
+            });
+        }
+        
+        function resetCards() {
+            const cards = document.querySelectorAll('.flashcard');
+            cards.forEach(card => {
+                if (card.classList.contains('flipped')) {
+                    card.classList.remove('flipped');
+                }
+            });
+            
+            // Opcional: reordenar os cards para a ordem original
+            shuffleCards(); // Ou implementar uma lógica para restaurar a ordem original
+        }
+        
+        function addFlashcard() {
+            const pergunta = document.getElementById('pergunta').value;
+            const resposta = document.getElementById('resposta').value;
+            
+            if (!pergunta || !resposta) {
+                alert('Por favor, preencha tanto a pergunta quanto a resposta!');
+                return;
+            }
+            
+            const container = document.querySelector('.container');
+            
+            const newCard = document.createElement('div');
+            newCard.className = 'flashcard';
+            newCard.onclick = function() { this.classList.toggle('flipped'); };
+            
+            newCard.innerHTML = `
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <h2>${pergunta}</h2>
+                    </div>
+                    <div class="flashcard-back">
+                        <p>${resposta}</p>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(newCard);
+            
+            // Limpa os campos do formulário
+            document.getElementById('pergunta').value = '';
+            document.getElementById('resposta').value = '';
+            
+            // Rola a página para mostrar o novo card
+            newCard.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

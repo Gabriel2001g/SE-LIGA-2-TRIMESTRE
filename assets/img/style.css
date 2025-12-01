@@ -1,0 +1,184 @@
+/* Variáveis de cor */
+:root {
+    --verde-principal: #a8e6cf;
+    --verde-secundario: #dcedc1;
+    --branco: #ffffff;
+    --destaque: #ffaaa5;
+    --texto: #2a363b;
+}
+
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--verde-principal);
+    color: var(--texto);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+h1 {
+    color: var(--texto);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Estilos dos flashcards */
+.flashcard {
+    background-color: var(--branco);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.flashcard:hover {
+    transform: translateY(-5px);
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.flashcard-front {
+    background-color: var(--branco);
+    color: var(--texto);
+    border: 3px solid var(--verde-principal);
+}
+
+.flashcard-back {
+    background-color: var(--verde-secundario);
+    color: var(--texto);
+    transform: rotateY(180deg);
+    border: 3px solid var(--branco);
+}
+
+.flashcard h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.flashcard p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Controles */
+.controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    background-color: var(--destaque);
+    color: var(--branco);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: var(--branco);
+    color: var(--destaque);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Formulário para adicionar flashcards */
+.add-flashcard {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--branco);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.add-flashcard h2 {
+    margin-top: 0;
+    color: var(--texto);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--verde-principal);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Rodapé */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    color: var(--texto);
+    font-size: 0.9rem;
+}
